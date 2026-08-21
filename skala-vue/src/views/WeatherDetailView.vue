@@ -267,7 +267,7 @@ const groupedForecast = computed(() => {
         </div>
       </div>
 
-      <RouterLink to="/weather" class="back-link">메인 대시보드로 돌아가기</RouterLink>
+      <RouterLink to="/" class="back-link">메인 대시보드로 돌아가기</RouterLink>
     </div>
   </div>
 </template>

@@ -7,9 +7,9 @@ import UnitToggler from './components/exercise/UnitToggler.vue'
   <h1>SKALA Weather</h1>
   <div class="nav-bar">
     <nav>
-      <RouterLink to="/weather">날씨 대시보드</RouterLink>
+      <RouterLink to="/">날씨 대시보드</RouterLink>
       <RouterLink to="/weather/explore">여행지 찾기</RouterLink>
-      <RouterLink to="/weather/about">서비스 소개</RouterLink>
+      <RouterLink to="/challenge">Code Challenge</RouterLink>
     </nav>
     <UnitToggler />
   </div>

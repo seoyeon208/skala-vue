@@ -4,7 +4,7 @@
       <p class="icon">404</p>
       <h3>페이지를 찾을 수 없습니다.</h3>
       <p class="desc">요청하신 주소가 존재하지 않거나, 아직 개발되지 않았습니다.</p>
-      <RouterLink to="/weather" class="back-link">날씨 메인으로 돌아가기</RouterLink>
+      <RouterLink to="/" class="back-link">날씨 메인으로 돌아가기</RouterLink>
     </div>
   </div>
 </template>

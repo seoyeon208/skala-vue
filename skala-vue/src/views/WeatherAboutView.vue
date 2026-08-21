@@ -10,7 +10,7 @@
         <p>실시간 도시 검색, 강수 및 온도 조건 필터, 도시별 상세 기상 정보를 제공합니다.</p>
       </div>
 
-      <RouterLink to="/weather" class="back-link">메인 대시보드로 돌아가기</RouterLink>
+      <RouterLink to="/" class="back-link">메인 대시보드로 돌아가기</RouterLink>
     </div>
   </div>
 </template>
