@@ -7,7 +7,7 @@ import WeatherCard from '../components/exercise/WeatherCard.vue'
 import { weatherList as weatherListData } from '../data/weatherList.js'
 import { useFavoriteStore } from '../stores/favoriteStore.js'
 import { useConfigStore } from '../stores/configStore.js'
-import { fetchCurrentWeather } from '../services/weatherApi.js'
+import { fetchCurrentWeather, WEATHER_LOAD_ERROR } from '../services/weatherApi.js'
 
 const router = useRouter()
 const favoriteStore = useFavoriteStore()
@@ -29,8 +29,7 @@ onMounted(async () => {
       }),
     )
   } catch (err) {
-    loadError.value =
-      '실시간 날씨를 불러오지 못했습니다. (.env의 API 키를 확인하세요 — mock 데이터로 표시 중)'
+    loadError.value = WEATHER_LOAD_ERROR
     console.error(err)
   }
 })
