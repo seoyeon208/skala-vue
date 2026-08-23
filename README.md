@@ -2,6 +2,14 @@
 - 배포: https://skala-vue-lake-tau.vercel.app/
 - 저장소: https://github.com/seoyeon208/skala-vue
 
+## 주요 기능
+
+- **날씨 대시보드** (`/`) — 17개 도시 실시간 날씨, 도시 검색, 초성 색인, 즐겨찾기, 섭씨/화씨 전환
+- **상세 페이지** (`/weather/:cityId`) — 체감온도·습도·기압 등 관측값, 대기질(AQI), 지도, 위키백과 도시 소개, 5일 예보
+- **여행지 찾기** (`/weather/explore`) — 강수·기온 조건 필터, 쾌적도 점수 기반 오늘/지정일 추천 TOP 3
+- **Code Challenge** (`/challenge`) — 1~4일차 Vue 문법 실습 코드를 주제별 탭으로 정리
+- **서비스 소개** (`/weather/about`) — 서비스 설명과 개발 중 겪은 트러블슈팅 기록
+
 ## 기술 스택
 
 - Vue 3 (Composition API, `<script setup>`)

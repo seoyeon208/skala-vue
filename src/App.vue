@@ -10,6 +10,7 @@ import UnitToggler from './components/exercise/UnitToggler.vue'
       <RouterLink to="/">날씨 대시보드</RouterLink>
       <RouterLink to="/weather/explore">여행지 찾기</RouterLink>
       <RouterLink to="/challenge">Code Challenge</RouterLink>
+      <RouterLink to="/weather/about">서비스 소개</RouterLink>
     </nav>
     <UnitToggler />
   </div>
