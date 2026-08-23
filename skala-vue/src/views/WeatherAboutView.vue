@@ -18,11 +18,11 @@
 <style scoped>
 .dashboard-wrapper {
   width: 100%;
-  background: #ffffff;
+  background: var(--weather-surface);
   font-family:
     -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Apple SD Gothic Neo', 'Pretendard',
     sans-serif;
-  color: #1d1d1f;
+  color: var(--weather-text);
 }
 
 .page-inner {
@@ -33,7 +33,7 @@
 
 .detail-card {
   padding: 24px;
-  background: #f5f5f7;
+  background: var(--weather-bg);
   border-radius: 18px;
   margin-bottom: 24px;
 }
@@ -46,7 +46,7 @@
 
 .detail-card p {
   margin-bottom: 6px;
-  color: #6e6e73;
+  color: var(--weather-text-muted);
 }
 
 .back-link {
@@ -54,13 +54,13 @@
   padding: 8px 18px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #0071e3;
-  border: 1.5px solid #0071e3;
+  color: var(--weather-primary);
+  border: 1.5px solid var(--weather-primary);
   border-radius: 999px;
   text-decoration: none;
 }
 
 .back-link:hover {
-  background: #e5f0ff;
+  background: var(--weather-primary-soft);
 }
 </style>

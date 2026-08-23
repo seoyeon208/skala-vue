@@ -30,6 +30,6 @@ const unitOptions = [
   align-items: center;
   gap: 8px;
   font-size: 0.85rem;
-  color: #6e6e73;
+  color: var(--weather-text-muted);
 }
 </style>

@@ -12,11 +12,11 @@
 <style scoped>
 .dashboard-wrapper {
   width: 100%;
-  background: #ffffff;
+  background: var(--weather-surface);
   font-family:
     -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Apple SD Gothic Neo', 'Pretendard',
     sans-serif;
-  color: #1d1d1f;
+  color: var(--weather-text);
 }
 
 .not-found {
@@ -29,7 +29,7 @@
 .icon {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #0071e3;
+  color: var(--weather-primary);
   margin-bottom: 16px;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .desc {
-  color: #6e6e73;
+  color: var(--weather-text-muted);
   margin-bottom: 24px;
 }
 
@@ -49,13 +49,13 @@
   padding: 10px 20px;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #ffffff;
-  background: #0071e3;
+  color: var(--weather-surface);
+  background: var(--weather-primary);
   border-radius: 999px;
   text-decoration: none;
 }
 
 .back-link:hover {
-  background: #0077ed;
+  background: var(--weather-primary-hover);
 }
 </style>

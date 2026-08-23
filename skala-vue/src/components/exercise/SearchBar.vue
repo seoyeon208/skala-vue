@@ -48,7 +48,7 @@ const selectHistory = (term) => {
 p {
   margin-top: 10px;
   font-size: 0.9rem;
-  color: #86868b;
+  color: var(--weather-text-muted);
 }
 
 .history {
@@ -61,7 +61,7 @@ p {
 
 .history-label {
   font-size: 0.8rem;
-  color: #86868b;
+  color: var(--weather-text-muted);
 }
 
 .history-chip {

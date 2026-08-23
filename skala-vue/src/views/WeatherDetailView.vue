@@ -92,6 +92,7 @@ onMounted(async () => {
       sunrise: formatTime(data.sys.sunrise),
       sunset: formatTime(data.sys.sunset),
       description: data.weather[0].description,
+      icon: data.weather[0].icon,
       lat: data.coord.lat,
       lon: data.coord.lon,
     }
@@ -181,6 +182,12 @@ const groupedForecast = computed(() => {
           <span class="status-text">{{ detail ? detail.description : city.status }}</span>
         </p>
         <p class="temp-large">
+          <img
+            v-if="detail && detail.icon"
+            class="weather-icon-large"
+            :src="`https://openweathermap.org/img/wn/${detail.icon}@2x.png`"
+            :alt="detail.description"
+          />
           {{ displayTemp }}{{ configStore.unitSymbol }}
           <Tag
             v-if="airQuality"
@@ -275,11 +282,11 @@ const groupedForecast = computed(() => {
 <style scoped>
 .dashboard-wrapper {
   width: 100%;
-  background: #ffffff;
+  background: var(--weather-surface);
   font-family:
     -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Apple SD Gothic Neo', 'Pretendard',
     sans-serif;
-  color: #1d1d1f;
+  color: var(--weather-text);
 }
 
 .page-inner {
@@ -290,7 +297,7 @@ const groupedForecast = computed(() => {
 
 .detail-card {
   padding: 24px;
-  background: #f5f5f7;
+  background: var(--weather-bg);
   border-radius: 18px;
   margin-bottom: 24px;
 }
@@ -322,7 +329,7 @@ const groupedForecast = computed(() => {
 }
 
 .status-text {
-  color: #86868b;
+  color: var(--weather-text-muted);
 }
 
 .city-title {
@@ -339,6 +346,12 @@ const groupedForecast = computed(() => {
   margin: 8px 0 20px;
 }
 
+.weather-icon-large {
+  width: 64px;
+  height: 64px;
+  margin: -8px -4px;
+}
+
 .aqi-tag {
   font-size: 0.8rem;
 }
@@ -351,14 +364,14 @@ const groupedForecast = computed(() => {
 
 .observation-item {
   padding: 12px;
-  background: #ffffff;
+  background: var(--weather-surface);
   border-radius: 12px;
   text-align: center;
 }
 
 .observation-label {
   font-size: 0.75rem;
-  color: #86868b;
+  color: var(--weather-text-muted);
   margin-bottom: 4px;
 }
 
@@ -372,22 +385,22 @@ const groupedForecast = computed(() => {
   padding: 8px 18px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #0071e3;
-  border: 1.5px solid #0071e3;
+  color: var(--weather-primary);
+  border: 1.5px solid var(--weather-primary);
   border-radius: 999px;
   text-decoration: none;
 }
 
 .back-link:hover {
-  background: #e5f0ff;
+  background: var(--weather-primary-soft);
 }
 
 .load-error {
   margin-bottom: 24px;
   padding: 12px 16px;
   font-size: 0.85rem;
-  color: #d70015;
-  background: #ffe5e5;
+  color: var(--weather-danger);
+  background: var(--weather-danger-soft);
   border-radius: 12px;
 }
 
@@ -411,7 +424,7 @@ const groupedForecast = computed(() => {
   gap: 12px;
   padding: 6px 4px;
   font-size: 0.85rem;
-  border-bottom: 1px solid #ececee;
+  border-bottom: 1px solid var(--weather-border);
 }
 
 .forecast-row:last-child {
@@ -420,18 +433,18 @@ const groupedForecast = computed(() => {
 
 .forecast-time {
   width: 48px;
-  color: #86868b;
+  color: var(--weather-text-muted);
   flex-shrink: 0;
 }
 
 .forecast-desc {
   flex: 1;
-  color: #6e6e73;
+  color: var(--weather-text-muted);
 }
 
 .forecast-pop {
   width: 90px;
-  color: #0071e3;
+  color: var(--weather-primary);
   font-size: 0.8rem;
   flex-shrink: 0;
 }

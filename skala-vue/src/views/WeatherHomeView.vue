@@ -24,6 +24,7 @@ onMounted(async () => {
         const data = await fetchCurrentWeather(city.enName)
         city.temp = Math.round(data.main.temp)
         city.status = data.weather[0].description
+        city.icon = data.weather[0].icon
         city.rainChance = data.clouds.all // 강수확률 API가 없어 구름량(%)을 근사치로 사용
       }),
     )
@@ -222,11 +223,11 @@ const showDetail = (city) => {
 <style scoped>
 .dashboard-wrapper {
   width: 100%;
-  background: #f5f5f7;
+  background: var(--weather-bg);
   font-family:
     -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Apple SD Gothic Neo', 'Pretendard',
     sans-serif;
-  color: #1d1d1f;
+  color: var(--weather-text);
 }
 
 .page-inner {
@@ -239,8 +240,8 @@ const showDetail = (city) => {
   padding: 40px 32px;
   margin-bottom: 24px;
   border-radius: 24px;
-  background: linear-gradient(135deg, #0071e3 0%, #42a1ff 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--weather-primary) 0%, var(--weather-accent) 100%);
+  color: var(--weather-surface);
 }
 
 .hero-eyebrow {
@@ -306,7 +307,7 @@ h3 {
 .consonant-btn {
   padding: 3px 7px;
   font-size: 0.7rem;
-  color: #86868b;
+  color: var(--weather-text-muted);
   background: none;
   border: none;
   border-radius: 6px;
@@ -314,16 +315,16 @@ h3 {
 }
 
 .consonant-btn:hover:not(:disabled) {
-  background: #f5f5f7;
+  background: var(--weather-bg);
 }
 
 .consonant-btn.active {
-  color: #0071e3;
+  color: var(--weather-primary);
   font-weight: 700;
 }
 
 .consonant-btn:disabled {
-  color: #d2d2d7;
+  color: var(--weather-border);
   cursor: default;
 }
 
@@ -335,7 +336,7 @@ h3 {
 
 .empty {
   text-align: center;
-  color: #e74c3c;
+  color: var(--weather-danger);
   padding: 10px 0;
 }
 
@@ -343,8 +344,8 @@ h3 {
   margin-bottom: 24px;
   padding: 12px 16px;
   font-size: 0.85rem;
-  color: #d70015;
-  background: #ffe5e5;
+  color: var(--weather-danger);
+  background: var(--weather-danger-soft);
   border-radius: 12px;
 }
 
@@ -352,8 +353,8 @@ h3 {
   text-align: center;
   padding: 16px;
   font-size: 0.9rem;
-  color: #6e6e73;
-  background: #ffffff;
+  color: var(--weather-text-muted);
+  background: var(--weather-surface);
   border-radius: 12px;
   margin-top: 40px;
 }

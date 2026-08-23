@@ -42,7 +42,15 @@ const displayTemp = computed(() => {
           <h4>
             {{ city.name }} <span class="status-text">{{ city.status }}</span>
           </h4>
-          <p class="temp">{{ displayTemp }}{{ configStore.unitSymbol }}</p>
+          <div class="temp-row">
+            <img
+              v-if="city.icon"
+              class="weather-icon"
+              :src="`https://openweathermap.org/img/wn/${city.icon}@2x.png`"
+              :alt="city.status"
+            />
+            <p class="temp">{{ displayTemp }}{{ configStore.unitSymbol }}</p>
+          </div>
           <p class="rain">강수확률 {{ city.rainChance }}%</p>
         </div>
 
@@ -84,11 +92,11 @@ const displayTemp = computed(() => {
   position: absolute;
   top: 16px;
   right: 16px;
-  color: #d2d2d7;
+  color: var(--weather-border);
 }
 
 .btn-favorite.active {
-  color: #f5a623;
+  color: var(--weather-favorite);
 }
 
 .card-info {
@@ -104,7 +112,19 @@ const displayTemp = computed(() => {
 
 .status-text {
   font-weight: 400;
-  color: #86868b;
+  color: var(--weather-text-muted);
+}
+
+.temp-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.weather-icon {
+  width: 40px;
+  height: 40px;
+  margin-left: -8px;
 }
 
 .card-info .temp {
@@ -115,7 +135,7 @@ const displayTemp = computed(() => {
 
 .card-info .rain {
   font-size: 0.85rem;
-  color: #86868b;
+  color: var(--weather-text-muted);
 }
 
 .btn-detail {

@@ -1,5 +1,22 @@
 @import './base.css';
 
+/* SKALA Weather 디자인 토큰 - 날씨 앱 화면(대시보드/여행지찾기/상세)에서 공통으로 쓰는 색상 */
+:root {
+  --weather-primary: #0071e3;
+  --weather-primary-hover: #0077ed;
+  --weather-primary-soft: #e5f0ff;
+  --weather-accent: #42a1ff;
+  --weather-bg: #f5f5f7;
+  --weather-surface: #ffffff;
+  --weather-text: #1d1d1f;
+  --weather-text-muted: #6e6e73;
+  --weather-border: #d2d2d7;
+  --weather-danger: #d70015;
+  --weather-danger-soft: #ffe5e5;
+  --weather-neutral-soft: #eef0f2;
+  --weather-favorite: #f5a623;
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
