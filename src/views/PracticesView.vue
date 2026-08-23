@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import BaseDashboardCard from '../components/exercise/BaseDashboardCard.vue'
 import SampleOne from '../components/practices/basic/SampleOne.vue'
 import SampleTwo from '../components/practices/basic/SampleTwo.vue'
@@ -96,7 +96,22 @@ const categories = [
   },
 ]
 
-const selected = ref(categories[0].items[0])
+// ref에 객체를 그대로 담으면 내부적으로 reactive proxy로 바뀌어서 원본 객체와 참조 비교(===)가 깨진다.
+// title(고유값)만 ref로 들고, 실제 항목/카테고리는 매번 찾아서 쓴다.
+const selectedTitle = ref(categories[0].items[0].title)
+
+const selected = computed(() => {
+  for (const category of categories) {
+    const item = category.items.find((item) => item.title === selectedTitle.value)
+    if (item) return item
+  }
+  return null
+})
+
+// 지금 보고 있는 실습이 어느 유형(카테고리)에 속하는지 사이드바 밖에서도 알 수 있도록
+const selectedCategory = computed(() => {
+  return categories.find((category) => category.items.some((item) => item.title === selectedTitle.value))
+})
 </script>
 
 <template>
@@ -115,8 +130,8 @@ const selected = ref(categories[0].items[0])
               v-for="item in category.items"
               :key="item.title"
               class="sidebar-item"
-              :class="{ active: selected === item }"
-              @click="selected = item"
+              :class="{ active: selectedTitle === item.title }"
+              @click="selectedTitle = item.title"
             >
               {{ item.title }}
             </button>
@@ -124,6 +139,7 @@ const selected = ref(categories[0].items[0])
         </aside>
 
         <main class="content-panel">
+          <p v-if="selectedCategory" class="current-category">{{ selectedCategory.title }}</p>
           <BaseDashboardCard v-if="selected" class="practice-card">
             <template #title>
               <h3>{{ selected.title }}</h3>
@@ -230,6 +246,14 @@ const selected = ref(categories[0].items[0])
 .content-panel {
   flex: 1;
   min-width: 0;
+}
+
+.current-category {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--weather-text);
+  margin-bottom: 12px;
 }
 
 .practice-card {
