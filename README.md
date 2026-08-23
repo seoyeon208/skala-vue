@@ -58,14 +58,50 @@ npm run format   # Prettier
 
 ```
 src/
-├── views/              # 라우트 단위 화면
-├── components/
-│   ├── exercise/       # 날씨 서비스에서 실제로 쓰는 재사용 컴포넌트
-│   └── practices/      # 1~4일차 실습 코드 원본 (Code Challenge에서 렌더링)
-├── stores/              # Pinia 스토어
-├── services/            # 외부 API 호출 함수
+├── main.js                    # 앱 진입점 (Pinia, Router, PrimeVue 등록)
+├── App.vue                    # 최상위 레이아웃 + RouterView
 ├── router/
-└── data/                # 도시 목록 mock 데이터 (API 실패 시 fallback)
+│   └── index.js                # 라우트 정의 (지연 로딩 + catch-all)
+│
+├── views/                      # 라우트에 매핑되는 화면 단위 컴포넌트
+│   ├── WeatherHomeView.vue      # '/' 날씨 대시보드 (도시 검색·초성 필터·즐겨찾기 정렬)
+│   ├── WeatherDetailView.vue    # '/weather/:cityId' 도시 상세 (관측값·지도·위키·5일 예보)
+│   ├── WeatherExploreView.vue   # '/weather/explore' 여행지 찾기 (쾌적도 점수 TOP3 추천)
+│   ├── WeatherAboutView.vue     # '/weather/about' 서비스 소개 + 트러블슈팅 기록
+│   ├── PracticesView.vue        # '/challenge' 실습 코드 사이드바 (카테고리별 목록 + 현재 선택 표시)
+│
+│
+├── components/
+│   ├── exercise/                # 날씨 서비스에서 실제로 쓰는 재사용 컴포넌트
+│   │   ├── BaseDashboardCard.vue  # 카드 레이아웃 공통화 (title/기본 slot)
+│   │   ├── SearchBar.vue          # 검색 input (props: searchQuery / emit: update-query)
+│   │   ├── WeatherCard.vue        # 도시별 날씨 카드 (props: city / emit: select-card, click-detail)
+│   │   ├── WeatherBadge.vue       # 카드 위 "더움/선선함", "강수/맑음" 태그 표시
+│   │   └── UnitToggler.vue        # 섭씨/화씨 전환 버튼 (configStore 연동)
+│   │
+│   └── practices/               # 1~4일차 실습 코드 원본 (PracticesView에서 그대로 렌더링)
+│       ├── basic/                  # 보간법·디렉티브·이벤트·v-model·Composition API 실습 (28개)
+│       ├── component/              # Props/Emits, 슬롯(기본/named/scoped) Parent-Child 쌍
+│       └── library/                 # Axios CRUD, Axios 날씨 통신, Pinia Counter Store 실습
+│
+├── stores/                      # Pinia 스토어 (전부 setup 함수 문법, localStorage에 영속화)
+│   ├── configStore.js             # 온도 단위(°C/°F) 전역 상태
+│   ├── favoriteStore.js           # 즐겨찾기 도시 id 목록
+│   ├── preferenceStore.js         # 여행지 찾기 필터(강수 유무·기온 범위) 상태
+│   ├── searchHistoryStore.js      # 최근 검색어 기록 (최대 5개)
+│   ├── persist.js                 # localStorage 읽기/쓰기 공통 헬퍼 (위 4개 스토어가 공유)
+│   └── counter.js                 # Pinia 튜토리얼 기본 예제 (Code Challenge용, 서비스 미사용)
+│
+├── services/                    # 외부 API 호출 함수
+│   ├── weatherApi.js               # OpenWeatherMap (현재 날씨·5일 예보·대기질)
+│   └── wikiApi.js                  # 위키백과 REST API (도시 요약 설명)
+│
+├── data/
+│   └── weatherList.js              # 도시 17곳 mock 데이터 (API 실패 시 fallback 겸 초기값)
+│
+└── assets/
+    ├── main.css                     # 색상(--weather-*)·여백(--space-*) 디자인 토큰, 전역 스타일
+    └── base.css                     # Vite 기본 리셋 스타일
 ```
 
 ## 과제 요구사항
