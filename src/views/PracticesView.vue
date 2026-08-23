@@ -1,10 +1,6 @@
 <script setup>
+import { ref } from 'vue'
 import BaseDashboardCard from '../components/exercise/BaseDashboardCard.vue'
-import Tabs from 'primevue/tabs'
-import TabList from 'primevue/tablist'
-import Tab from 'primevue/tab'
-import TabPanels from 'primevue/tabpanels'
-import TabPanel from 'primevue/tabpanel'
 import SampleOne from '../components/practices/basic/SampleOne.vue'
 import SampleTwo from '../components/practices/basic/SampleTwo.vue'
 import VueHTML from '../components/practices/basic/VueHtml.vue'
@@ -99,6 +95,8 @@ const categories = [
     ],
   },
 ]
+
+const selected = ref(categories[0].items[0])
 </script>
 
 <template>
@@ -109,31 +107,31 @@ const categories = [
         <h2>Vue 실습 코드 모음</h2>
       </section>
 
-      <Tabs value="0">
-        <TabList>
-          <Tab v-for="(category, index) in categories" :key="category.title" :value="String(index)">
-            {{ category.title }}
-          </Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel
-            v-for="(category, index) in categories"
-            :key="category.title"
-            :value="String(index)"
-          >
-            <BaseDashboardCard
+      <div class="challenge-layout">
+        <aside class="sidebar">
+          <template v-for="category in categories" :key="category.title">
+            <p class="sidebar-heading">{{ category.title }}</p>
+            <button
               v-for="item in category.items"
               :key="item.title"
-              class="practice-card"
+              class="sidebar-item"
+              :class="{ active: selected === item }"
+              @click="selected = item"
             >
-              <template #title>
-                <h3>{{ item.title }}</h3>
-              </template>
-              <component :is="item.component" />
-            </BaseDashboardCard>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+              {{ item.title }}
+            </button>
+          </template>
+        </aside>
+
+        <main class="content-panel">
+          <BaseDashboardCard v-if="selected" class="practice-card">
+            <template #title>
+              <h3>{{ selected.title }}</h3>
+            </template>
+            <component :is="selected.component" />
+          </BaseDashboardCard>
+        </main>
+      </div>
     </div>
   </div>
 </template>
@@ -176,13 +174,90 @@ const categories = [
   letter-spacing: -0.02em;
 }
 
+.challenge-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.sidebar {
+  flex: 0 0 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 75vh;
+  overflow-y: auto;
+  position: sticky;
+  top: 24px;
+  background: var(--weather-surface);
+  border-radius: 16px;
+  padding: 8px;
+}
+
+.sidebar-heading {
+  margin: 14px 8px 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--weather-text-muted);
+}
+
+.sidebar-heading:first-child {
+  margin-top: 4px;
+}
+
+.sidebar-item {
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  color: var(--weather-text);
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.sidebar-item:hover {
+  background: var(--weather-neutral-soft);
+}
+
+.sidebar-item.active {
+  background: var(--weather-primary-soft);
+  color: var(--weather-primary);
+  font-weight: 600;
+}
+
+.content-panel {
+  flex: 1;
+  min-width: 0;
+}
+
 .practice-card {
-  margin-top: 24px;
+  margin: 0;
 }
 
 .practice-card :deep(h3) {
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: -0.01em;
+}
+
+@media (max-width: 720px) {
+  .challenge-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    flex: none;
+    position: static;
+    max-height: none;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebar-heading {
+    width: 100%;
+  }
 }
 </style>
