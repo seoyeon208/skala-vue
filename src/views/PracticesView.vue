@@ -116,8 +116,16 @@ const categories = [
           </Tab>
         </TabList>
         <TabPanels>
-          <TabPanel v-for="(category, index) in categories" :key="category.title" :value="String(index)">
-            <BaseDashboardCard v-for="item in category.items" :key="item.title" class="practice-card">
+          <TabPanel
+            v-for="(category, index) in categories"
+            :key="category.title"
+            :value="String(index)"
+          >
+            <BaseDashboardCard
+              v-for="item in category.items"
+              :key="item.title"
+              class="practice-card"
+            >
               <template #title>
                 <h3>{{ item.title }}</h3>
               </template>
@@ -143,11 +151,11 @@ const categories = [
 .page-inner {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 60px 24px 100px;
+  padding: var(--space-page-top) var(--space-page-x) var(--space-page-bottom);
 }
 
 .hero {
-  padding: 40px 32px;
+  padding: var(--space-hero-y) var(--space-hero-x);
   margin-bottom: 24px;
   border-radius: 24px;
   background: linear-gradient(135deg, var(--weather-primary) 0%, var(--weather-accent) 100%);

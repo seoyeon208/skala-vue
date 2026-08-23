@@ -62,7 +62,11 @@ const availableDates = computed(() => {
 })
 
 function formatDateLabel(dateStr) {
-  return new Date(dateStr).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' })
+  return new Date(dateStr).toLocaleDateString('ko-KR', {
+    month: 'long',
+    day: 'numeric',
+    weekday: 'short',
+  })
 }
 
 async function loadForecastForDate(dateStr) {
@@ -107,7 +111,9 @@ const top3Source = computed(() => {
 })
 
 const top3Title = computed(() => {
-  return selectedDate.value ? `${formatDateLabel(selectedDate.value)} 추천 TOP 3` : '오늘의 추천 TOP 3'
+  return selectedDate.value
+    ? `${formatDateLabel(selectedDate.value)} 추천 TOP 3`
+    : '오늘의 추천 TOP 3'
 })
 
 const top3 = computed(() => {
@@ -229,7 +235,10 @@ const goToDetail = (city) => {
           </div>
 
           <div class="filter-field temp-field">
-            <span>기온 {{ preferenceStore.tempRange[0] }}°C ~ {{ preferenceStore.tempRange[1] }}°C</span>
+            <span
+              >기온 {{ preferenceStore.tempRange[0] }}°C ~
+              {{ preferenceStore.tempRange[1] }}°C</span
+            >
             <Slider
               class="temp-slider"
               :model-value="preferenceStore.tempRange"
@@ -283,11 +292,11 @@ const goToDetail = (city) => {
 .page-inner {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 60px 24px 100px;
+  padding: var(--space-page-top) var(--space-page-x) var(--space-page-bottom);
 }
 
 .hero {
-  padding: 40px 32px;
+  padding: var(--space-hero-y) var(--space-hero-x);
   margin-bottom: 24px;
   border-radius: 24px;
   background: linear-gradient(135deg, var(--weather-primary) 0%, var(--weather-accent) 100%);

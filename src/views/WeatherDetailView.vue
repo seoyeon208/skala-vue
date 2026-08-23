@@ -292,7 +292,7 @@ const groupedForecast = computed(() => {
 .page-inner {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 60px 24px 100px;
+  padding: var(--space-page-top) var(--space-page-x) var(--space-page-bottom);
 }
 
 .detail-card {

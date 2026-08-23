@@ -15,12 +15,19 @@
   --weather-danger-soft: #ffe5e5;
   --weather-neutral-soft: #eef0f2;
   --weather-favorite: #f5a623;
+
+  /* 뷰포트 폭에 따라 자동으로 늘고 줄어드는 여백 - 화면마다 별도 미디어 쿼리 없이 반응형 처리 */
+  --space-page-x: clamp(16px, 4vw, 24px);
+  --space-page-top: clamp(32px, 8vw, 60px);
+  --space-page-bottom: clamp(48px, 10vw, 100px);
+  --space-hero-y: clamp(24px, 5vw, 40px);
+  --space-hero-x: clamp(20px, 4vw, 32px);
 }
 
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: clamp(1rem, 4vw, 2rem);
   font-weight: normal;
 }
 

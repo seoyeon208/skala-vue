@@ -22,7 +22,7 @@
 .not-found {
   max-width: 400px;
   margin: 0 auto;
-  padding: 100px 24px;
+  padding: var(--space-page-bottom) var(--space-page-x);
   text-align: center;
 }
 
